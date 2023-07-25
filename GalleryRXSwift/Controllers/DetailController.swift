@@ -10,7 +10,17 @@ import SDWebImage
 
 class DetailViewController: UIViewController {
     
-    var largeImageURL: String?
+    let largeImageURL: String
+    
+    init(largeImageURL: String) {
+        self.largeImageURL = largeImageURL
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var scrollView: UIScrollView!
     
     let largeImageView: UIImageView = {
@@ -40,8 +50,7 @@ class DetailViewController: UIViewController {
     }
     
     func setImage() {
-        guard let urlString = largeImageURL else { return }
-        let url = URL(string: urlString)
+        let url = URL(string: largeImageURL)
         largeImageView.sd_setImage(with: url, placeholderImage: nil, options: [.continueInBackground, .progressiveLoad])
     }
 

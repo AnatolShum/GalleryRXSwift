@@ -71,8 +71,7 @@ class MainController: UIViewController, UIScrollViewDelegate {
         }.disposed(by: bag)
         
         collectionView.rx.modelSelected(Model.self).bind { model in
-            let detailController = DetailViewController()
-            detailController.largeImageURL = model.largeImageURL
+            let detailController = DetailViewController(largeImageURL: model.largeImageURL)
             self.navigationController?.pushViewController(detailController, animated: true)
         }.disposed(by: bag)
         
